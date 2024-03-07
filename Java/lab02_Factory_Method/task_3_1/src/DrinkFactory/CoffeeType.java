@@ -1,4 +1,4 @@
-package DrinkMachine;
+package DrinkFactory;
 
 public enum CoffeeType implements DrinkType {
     ESPRESSO,

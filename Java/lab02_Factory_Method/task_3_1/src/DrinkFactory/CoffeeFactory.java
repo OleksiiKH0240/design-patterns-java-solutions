@@ -1,4 +1,4 @@
-package DrinkMachine;
+package DrinkFactory;
 
 import Drinks.*;
 

@@ -1,4 +1,4 @@
-import DrinkMachine.*;
+import DrinkFactory.*;
 
 
 public class Main {

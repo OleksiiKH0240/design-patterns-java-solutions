@@ -1,6 +1,6 @@
 package Drinks;
 
-import DrinkMachine.IngredientType;
+import DrinkFactory.IngredientType;
 
 import java.util.Dictionary;
 import java.util.Enumeration;
