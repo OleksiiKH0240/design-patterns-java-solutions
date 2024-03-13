@@ -1,45 +1,74 @@
-import java.util.ArrayList;
+import Factories.HyundaiTransportFactory;
+import Factories.SkodaTransportFactory;
+import Factories.TransportFactory;
+import Factories.VolvoTransportFactory;
+import Transport.Transport;
+
 
 public class Main {
     public static void main(String[] args) {
+        int numberBuses = 15;
+        int numberTrolleybuses = 10;
+        int numberTrams = 5;
+        int N = 1000;
+        int hyundaiOverallCost;
+        int skodaOverallCost;
+        int volvoOverallCost;
 
-        ArrayList<Bus> buses = new ArrayList<>();
-        ArrayList<Tram> trams = new ArrayList<>();
-        ArrayList<Trolleybus> trolleybuses = new ArrayList<>();
+        TransportFactory hyundaiFactory = new HyundaiTransportFactory();
+        TransportFactory skodaFactory = new SkodaTransportFactory();
+        TransportFactory volvoFactory = new VolvoTransportFactory();
 
-        final int A = 10;       // закупити A автобусів
-        final int T = 5;        // закупити T трамваїв
-        final int Tr = 40;      // закупити Tr – тролейбусів
-        final int N = 200_000;  // орієнтований пробіг експлуатації
+        Transport[] transports;
 
-        for (int i = 0; i < A; i++) {
-            Bus bus = new Bus(4500000, 25);
-            buses.add(bus);
+        BrandChooser brandChooser = new BrandChooser();
+
+        transports = brandChooser.createTransports(skodaFactory, numberBuses, numberTrolleybuses, numberTrams);
+        skodaOverallCost = brandChooser.calculateOverallCost(transports, N);
+
+        transports = brandChooser.createTransports(volvoFactory, numberBuses, numberTrolleybuses, numberTrams);
+        volvoOverallCost = brandChooser.calculateOverallCost(transports, N);
+
+        System.out.println("Skoda overall cost: " + skodaOverallCost);
+        System.out.println("Volvo overall cost: " + volvoOverallCost);
+
+        if (skodaOverallCost < volvoOverallCost) {
+            System.out.println("Skoda is better");
+        } else if (skodaOverallCost > volvoOverallCost) {
+            System.out.println("Volvo is better");
+        } else {
+            System.out.println("Skoda and Volvo are equal");
         }
 
-        for (int i = 0; i < T; i++) {
-            Tram tram = new Tram(9_000_000, 8);
-            trams.add(tram);
-        }
+        transports = brandChooser.createTransports(hyundaiFactory, numberBuses, numberTrolleybuses, numberTrams);
+        hyundaiOverallCost = brandChooser.calculateOverallCost(transports, N);
 
-        for (int i = 0; i < Tr; i++) {
-            Trolleybus trolley = new Trolleybus(6_800_000, 13);
-            trolleybuses.add(trolley);
-        }
+        System.out.println("Hyundai overall cost: " + hyundaiOverallCost);
 
-        int finalCostContract = 0;
-        for (Bus bus : buses) {
-            finalCostContract += bus.getCost() + bus.getUsageCost() * N;
+        if (hyundaiOverallCost < skodaOverallCost) {
+            if (hyundaiOverallCost < volvoOverallCost) {
+                System.out.println("Hyundai is better");
+            } else if (hyundaiOverallCost > volvoOverallCost) {
+                System.out.println("Volvo is better");
+            } else {
+                System.out.println("Hyundai and Volvo are equal");
+            }
+        } else if (hyundaiOverallCost > skodaOverallCost) {
+            if (skodaOverallCost < volvoOverallCost) {
+                System.out.println("Skoda is better");
+            } else if (skodaOverallCost > volvoOverallCost) {
+                System.out.println("Volvo is better");
+            } else {
+                System.out.println("Skoda and Volvo are equal");
+            }
+        } else {
+            if (hyundaiOverallCost < volvoOverallCost) {
+                System.out.println("Hyundai and Skoda are equal");
+            } else if (hyundaiOverallCost > volvoOverallCost) {
+                System.out.println("Volvo is better");
+            } else {
+                System.out.println("Hyundai, Skoda and Volvo are equal");
+            }
         }
-
-        for (Tram tram : trams) {
-            finalCostContract += tram.getCost() + tram.getUsageCost() * N;
-        }
-
-        for (Trolleybus trolleybus : trolleybuses) {
-            finalCostContract += trolleybus.getCost() + trolleybus.getUsageCost() * N;
-        }
-
-        System.out.println(finalCostContract);
     }
 }
