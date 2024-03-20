@@ -1,7 +1,7 @@
 package CarComponents;
 
 public enum BodyType {
-    SEDAN, HATCHBACK, COUPE, WAGON, SUV, MINIVAN, PICKUP;
+    SEDAN, HATCHBACK, SUV, PICKUP;
 
     @Override
     public String toString() {
