@@ -2,7 +2,7 @@ package Builders;
 
 import CarComponents.*;
 
-public class CarBuilderDetailed implements Builder{
+public class CarBuilder implements Builder{
     private BodyType bodyType;
     private WheelDisk wheelDisk;
     private Transmission transmission;

@@ -1,9 +1,9 @@
 import Builders.Car;
-import Builders.CarBuilderDetailed;
+import Builders.CarBuilder;
 
 public class Main {
     public static void main(String[] args) {
-        Director director = new Director(new CarBuilderDetailed());
+        Director director = new Director(new CarBuilder());
 
         Car car = director.buildSedan("blue");
         System.out.println(car);
