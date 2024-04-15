@@ -2,8 +2,8 @@ public class BlackTee extends Tee {
 
     private final int water_volume;
 
-    public BlackTee(int sugar, int water_volume) {
-        super(sugar);
+    public BlackTee(int sugar, int water_volume, BeverageType type) {
+        super(sugar, type);
         this.water_volume = water_volume;
     }
 

@@ -2,8 +2,8 @@ public class CoffeeWithMilk extends Coffee {
 
     private final int milkVolume;
 
-    public CoffeeWithMilk(int sugar, int milkVolume) {
-        super(sugar);
+    public CoffeeWithMilk(int sugar, int milkVolume, BeverageType type) {
+        super(sugar, type);
         this.milkVolume = milkVolume;
     }
 

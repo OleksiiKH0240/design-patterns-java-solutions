@@ -2,8 +2,8 @@ public class TeeWithMilk extends Tee {
 
     private final int milkVolume;
 
-    public TeeWithMilk(int sugar, int milkVolume) {
-        super(sugar);
+    public TeeWithMilk(int sugar, int milkVolume, BeverageType type) {
+        super(sugar, type);
         this.milkVolume = milkVolume;
     }
 
