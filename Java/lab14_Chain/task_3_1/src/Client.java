@@ -26,34 +26,17 @@ public class Client {
             Account.createGuest(),
         };
 
+        AbstractAuthHandler middleware = new GuestAuthHandler();
+
+        UserAuthHandler userAuthHandler = new UserAuthHandler();
+        middleware.setNextHandler(userAuthHandler);
+
+        AdminAuthHandler adminAuthHandler = new AdminAuthHandler();
+        userAuthHandler.setNextHandler(adminAuthHandler);
+
+
         for (Account user : users) {
-
-            Account.AccessType accessType = user.getAccessType();
-            String userLogin = user.getLogin();
-            String userPassword = user.getPassword();
-
-
-            if (accessType == Account.AccessType.Guest) {
-                System.out.println("Guest access provided!");
-            } else if (accessType == Account.AccessType.User) {
-
-                String passwordFromUserStorage = usersAccounts.get(userLogin);
-                if (userPassword.equals(passwordFromUserStorage)) {
-                    System.out.println("User access provided: " + userLogin);
-                } else {
-                    System.out.println("Access denied: " + userLogin);
-                }
-
-            } else if (accessType == Account.AccessType.Administrator) {
-
-                String passwordFromAdminsStorage = adminsAccounts.get(userLogin);
-                if (userPassword.equals(passwordFromAdminsStorage) && userPassword.length() >= 8) {
-                    System.out.println("Administrator access provided: " + userLogin);
-                } else {
-                    System.out.println("Access denied: " + userLogin);
-                }
-
-            }
+            middleware.authenticate(user, usersAccounts, adminsAccounts);
         }
     }
 }
