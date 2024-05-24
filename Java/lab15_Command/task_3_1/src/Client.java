@@ -6,11 +6,16 @@ public class Client {
         Lamp bedroomLamp = new Lamp("Bedroom");
         Lamp bathroomLamp = new Lamp("Bathroom");
 
-        Controller controllerKitchenLamp = new Controller();
-        Controller controllerHallLamp = new Controller();
-        Controller controllerBedroomLamp = new Controller();
-        Controller controllerBathroomLamp = new Controller();
-        Controller controllerUniversal = new Controller();
+        Command controllerKitchenLamp = new LightCommand(kitchenLamp);
+        Command controllerHallLamp = new LightCommand(hallLamp);
+        Command controllerBedroomLamp = new LightCommand(bedroomLamp);
+        Command controllerBathroomLamp = new LightCommand(bathroomLamp);
+        Command controllerUniversal = new UniversalCommand(
+                controllerKitchenLamp,
+                controllerHallLamp,
+                controllerBedroomLamp,
+                controllerBathroomLamp
+        );
 
         // Simulation
         controllerKitchenLamp.on();

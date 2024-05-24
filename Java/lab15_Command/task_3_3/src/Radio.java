@@ -1,10 +1,10 @@
-public class Television implements Device {
+public class Radio implements Device {
 
     private int volume;
     private int channel;
     private boolean isOn;
 
-    public Television() {
+    public Radio() {
         this.isOn = false;
         this.volume = 50;
         this.channel = 1;
@@ -15,7 +15,7 @@ public class Television implements Device {
         if (isOn) {
             return;
         }
-        System.out.println("Television is on");
+        System.out.println("Radio is on");
         isOn = true;
     }
 
@@ -24,7 +24,7 @@ public class Television implements Device {
         if (!isOn) {
             return;
         }
-        System.out.println("Television is off");
+        System.out.println("Radio is off");
         isOn = false;
     }
 
@@ -34,7 +34,7 @@ public class Television implements Device {
             return;
         }
         volume++;
-        System.out.println("TV Volume = " + volume);
+        System.out.println("Radio Volume = " + volume);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Television implements Device {
             return;
         }
         volume--;
-        System.out.println("TV Volume = " + volume);
+        System.out.println("Radio Volume = " + volume);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class Television implements Device {
             return;
         }
         channel++;
-        System.out.println("TV Channel = " + channel);
+        System.out.println("Radio Channel = " + channel);
     }
 
     @Override
@@ -61,6 +61,6 @@ public class Television implements Device {
             return;
         }
         channel--;
-        System.out.println("TV Channel = " + channel);
+        System.out.println("Radio Channel = " + channel);
     }
 }

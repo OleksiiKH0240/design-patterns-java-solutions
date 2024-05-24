@@ -13,15 +13,15 @@ public class TextEditor {
     final private Shortcut printShortcut;
 
     public TextEditor() {
-        saveButton = new Button();
-        printButton = new Button();
+        saveButton = new Button("saveButton");
+        printButton = new Button("printButton");
 
-        saveMenuItem = new MenuItem();
-        printMenuItem = new MenuItem();
-        showInfoMenuItem = new MenuItem();
+        saveMenuItem = new MenuItem("saveMenuItem");
+        printMenuItem = new MenuItem("printMenuItem");
+        showInfoMenuItem = new MenuItem("showInfoMenuItem");
 
-        saveShortcut = new Shortcut();
-        printShortcut = new Shortcut();
+        saveShortcut = new Shortcut("saveShortcut");
+        printShortcut = new Shortcut("printShortcut");
     }
 
     public void newDocument(String name) {

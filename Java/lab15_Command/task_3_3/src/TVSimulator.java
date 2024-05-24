@@ -3,23 +3,39 @@ public class TVSimulator {
 
         Device tv = new Television();
 
-        RemoteController controller = new RemoteController();
+        Device radio = new Radio();
 
-        controller.deviceOn();
+        RemoteController tvController = new RemoteController(tv);
+        RemoteController radioController = new RemoteController(radio);
+
+        tvController.deviceOn();
+        radioController.deviceOn();
 
         for (int i = 0; i < 30; i++) {
-            controller.deviceNextChanel();
+            tvController.deviceNextChanel();
+            radioController.deviceNextChanel();
         }
-        controller.deviceVolumeUp();
+        tvController.deviceVolumeUp();
+        radioController.deviceVolumeUp();
 
-        controller.deviceVolumeUp();
-        controller.deviceVolumeUp();
+        tvController.deviceVolumeUp();
+        radioController.deviceVolumeUp();
 
-        controller.devicePrevChanel();
+        tvController.deviceVolumeUp();
+        radioController.deviceVolumeUp();
 
-        controller.deviceVolumeDown();
+        tvController.devicePrevChanel();
+        radioController.devicePrevChanel();
 
-        controller.deviceOff();
+        tvController.deviceVolumeDown();
+        radioController.deviceVolumeDown();
 
+        tvController.deviceOff();
+        radioController.deviceOff();
+
+        System.out.println("\nUniversal controller\n");
+        UniversalController universalController = new UniversalController(tv, radio);
+        universalController.deviceOn();
+        universalController.deviceOff();
     }
 }
