@@ -10,6 +10,10 @@ public class Item implements Component {
         this.value = value;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
         return "Item{" +

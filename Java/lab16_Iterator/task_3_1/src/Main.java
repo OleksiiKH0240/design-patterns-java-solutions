@@ -1,21 +1,21 @@
 public class Main {
 
-  public static void main(String[] args) {
+    public static void main(String[] args) {
 
-    Employee zak = new Employee("Zak");
-    Employee sarah = new Employee("Sarah");
-    Employee anna = new Employee("Anna");
+        Employee zak = new Employee("Zak");
+        Employee sarah = new Employee("Sarah");
+        Employee anna = new Employee("Anna");
 
-    StaffList staffList = new StaffList();
-    staffList.addEmployee(zak);
-    staffList.addEmployee(sarah);
-    staffList.addEmployee(anna);
+        StaffList staffList = new StaffList();
+        staffList.addEmployee(zak);
+        staffList.addEmployee(sarah);
+        staffList.addEmployee(anna);
 
-          // TODO: Implement pattern to run commented code
-//    for (Employee employee : StaffList){
-//      System.out.println(employee);
-//    }
+        // TODO: Implement pattern to run commented code
+        for (Employee employee : new StaffListIterator(staffList)) {
+            System.out.println(employee);
+        }
 
-  }
+    }
 
 }

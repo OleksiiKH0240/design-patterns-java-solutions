@@ -19,6 +19,12 @@ public class Main {
             }
         }
 
+        root.setSearchType("dfs");
+        root.execute();
+
+        System.out.println("----------------------");
+
+        root.setSearchType("bfs");
         root.execute();
 
     }
