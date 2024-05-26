@@ -1,19 +1,26 @@
 public class ConcreteUser implements User {
 
     final private String userId;
+    private final Mediator mediator;
 
-    public ConcreteUser(String userId) {
+    public ConcreteUser(String userId, Mediator mediator) {
         this.userId = userId;
+        this.mediator = mediator;
+        mediator.notify(this, null, null, "addUser");
+    }
+
+    public String getUserId() {
+        return userId;
     }
 
     @Override
     public void sendMessageAll(String message) {
-
+        this.mediator.notify(this, message, null, "sendMessageAll");
     }
 
     @Override
     public void sendMessage(String message, String userTo) {
-
+        this.mediator.notify(this, message, userTo, "sendMessage");
     }
 
     @Override

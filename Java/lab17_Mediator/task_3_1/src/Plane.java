@@ -3,75 +3,63 @@
  */
 public class Plane {
 
-  /**
-   * Чи злетів літак
-   */
-  private boolean isInTheAir;
+    /**
+     * Чи злетів літак
+     */
+    private boolean isInTheAir;
 
-  /**
-   * Ідентифікатор літака
-   */
-  private int id;
+    /**
+     * Ідентифікатор літака
+     */
+    private int id;
+    private final Mediator mediator;
 
-  /**
-   * Злітно-посадкова смуга
-   */
-  private Runway runway;
+    public Plane(int id, Mediator mediator) {
+        this.id = id;
+        isInTheAir = false;
+        this.mediator = mediator;
 
-  /**
-   * Список літаків у польоті
-   */
-  private PlanesInFlight planesInFlight;
-
-  /**
-   * Список літаків, що приземлилися
-   */
-  private PlanesOnGround planesOnGround;
-
-
-  public Plane(int id) {
-    this.id = id;
-    isInTheAir = false;
-    runway = new Runway();
-    planesInFlight = new PlanesInFlight();
-    planesOnGround = new PlanesOnGround();
-    planesOnGround.addPlane(this);
-  }
-
-  /**
-   * Зліт літака
-   */
-  public void takeOff() {
-    if(!isInTheAir && runway.getIsAvailable()) {
-      System.out.println("Plane " + id + " is taking off...");
-      planesOnGround.removePlane(this);
-      planesInFlight.addPlane(this);
-      setIsInTheAir(true);
-      runway.setIsAvailable(false);
+        ((FlightsMediator) mediator).addPlane(this);
     }
-  }
 
-  /**
-   * Повертає ознаку чи літак в повітрі
-   * @return стан літака - чи в повітрі
-   */
-  public boolean getIsInTheAir() {
-    return isInTheAir;
-  }
+    /**
+     * Зліт літака
+     */
+    public void takeOff() {
+        this.mediator.notify("take_off", this.id);
+    }
 
-  /**
-   * Встановити ознаку чи злетів літак
-   * @param isInTheAir чи злетів літак
-   */
-  public void setIsInTheAir(boolean isInTheAir) {
-    this.isInTheAir = isInTheAir;
-  }
+    /**
+     * посадка літака
+     */
+    public void land() {
+        this.mediator.notify("land", this.id);
+    }
 
-  /**
-   * Ідентифікатор літака
-   * @return ідентифікатор
-   */
-  public int getId() {
-    return id;
-  }
+    /**
+     * Повертає ознаку чи літак в повітрі
+     *
+     * @return стан літака - чи в повітрі
+     */
+    public boolean getIsInTheAir() {
+        return isInTheAir;
+    }
+
+    /**
+     * Встановити ознаку чи злетів літак
+     *
+     * @param isInTheAir чи злетів літак
+     */
+    public void setIsInTheAir(boolean isInTheAir) {
+        this.isInTheAir = isInTheAir;
+    }
+
+    /**
+     * Ідентифікатор літака
+     *
+     * @return ідентифікатор
+     */
+    public int getId() {
+        return id;
+    }
 }
