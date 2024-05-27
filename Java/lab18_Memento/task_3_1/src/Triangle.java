@@ -77,5 +77,17 @@ public class Triangle {
         return (float) Math.sqrt(s);
     }
 
+    public Memento saveState() {
+        return new Memento(a, b, c);
+    }
 
+    public void restoreState(Memento memento) {
+        this.a = memento.getA();
+        this.b = memento.getB();
+        this.c = memento.getC();
+    }
+
+    public String toString() {
+        return "Triangle with a: " + a + ", b: " + b + ", c: " + c;
+    }
 }

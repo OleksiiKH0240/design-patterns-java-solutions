@@ -1,65 +1,64 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Client {
 
     public static void main(String[] args) {
         Triangle triangle = new Triangle(3, 3, 3);
 
-        String[] edges = {
-                "b",
-                "c",
-                "a",
-                "duplicateA",
-                "c",
-                "b",
-                "halfA"
-        };
+        Caretaker caretaker = new Caretaker(triangle);
+        List<Command> history = new ArrayList<>();
 
-        float[] values = {
-                4,
-                5,
-                4,
-                1, // "duplicateA",
-                6,
-                3,
-                1, // "halfA"
-        };
+        System.out.println("Initial triangle: " + triangle + ", area=" + triangle.square());
 
-        for (int index = 0; index < edges.length; index++) {
-            switch (edges[index]) {
-                case "a":
-                    triangle.setA(values[index]);
-                    break;
-                case "b":
-                    triangle.setB(values[index]);
-                    break;
-                case "c":
-                    triangle.setC(values[index]);
-                    break;
-                case "duplicateA":
-                    triangle.duplicateA();
-                    break;
-                case "duplicateB":
-                    triangle.duplicateB();
-                    break;
-                case "duplicateC":
-                    triangle.duplicateC();
-                    break;
-                case "halfA":
-                    triangle.halfA();
-                    break;
-                case "halfB":
-                    triangle.halfB();
-                    break;
-                case "halfC":
-                    triangle.halfC();
-                    break;
+        Command doubleCommand = new DoubleSidesCommand(triangle, caretaker);
+        Command halveCommand = new HalveSidesCommand(triangle, caretaker);
 
+        doubleCommand.execute();
+        history.add(doubleCommand);
+        System.out.println("After doubling sides: area=" + triangle.square());
+        System.out.println("Updated triangle: " + triangle);
+        System.out.println("--------------------------------");
+
+        halveCommand.execute();
+        history.add(halveCommand);
+        System.out.println("After halving sides: area=" + triangle.square());
+        System.out.println("Updated triangle: " + triangle);
+        System.out.println("--------------------------------");
+
+        halveCommand.execute();
+        history.add(halveCommand);
+        System.out.println("After halving sides again: area=" + triangle.square());
+        System.out.println("Updated triangle: " + triangle);
+        System.out.println("--------------------------------");
+
+        doubleCommand.execute();
+        history.add(doubleCommand);
+        System.out.println("After doubling sides again: area=" + triangle.square());
+        System.out.println("Updated triangle: " + triangle);
+        System.out.println("--------------------------------");
+
+        halveCommand.execute();
+        history.add(halveCommand);
+        System.out.println("After halving sides again: area=" + triangle.square());
+        System.out.println("Updated triangle: " + triangle);
+        System.out.println("--------------------------------");
+
+        float minArea = Float.MAX_VALUE;
+        Caretaker minAreaCaretaker = new Caretaker(triangle);
+        for (Command command : history) {
+            float currentArea = triangle.square();
+            if (currentArea < minArea) {
+                minArea = currentArea;
+                minAreaCaretaker.save();
             }
-
-            System.out.println("Volume = " + triangle.square());
+            command.undo();
         }
 
-
-
+        minAreaCaretaker.restore();
+        System.out.println("Restored to state with smallest area: " + triangle + ", area=" + triangle.square());
     }
 
+
 }
+

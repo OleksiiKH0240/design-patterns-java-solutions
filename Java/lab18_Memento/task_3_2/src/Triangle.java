@@ -57,58 +57,16 @@ public class Triangle {
         else System.out.println("Error: value is not set");
     }
 
-    /**
-     * Збільшує вдвічі сторону "а" трикутника
-     */
-    public void duplicateA() {
-        if (checkExistence(2f * a, b, c))
-            this.a *= 2f;
-        else System.out.println("Error: value is not set");
+    public void doubleSides() {
+        this.a *= 2;
+        this.b *= 2;
+        this.c *= 2;
     }
 
-    /**
-     * Зменшує вдвічі сторону "а" трикутника
-     */
-    public void halfA() {
-        if (checkExistence(a / 2f, b, c))
-            this.a /= 2f;
-        else System.out.println("Error: value is not set");
-    }
-
-    /**
-     * Збільшує вдвічі сторону "b" трикутника
-     */
-    public void duplicateB() {
-        if (checkExistence(a, 2f * b, c))
-            this.b *= 2f;
-        else System.out.println("Error: value is not set");
-    }
-
-    /**
-     * Зменшує вдвічі сторону "b" трикутника
-     */
-    public void halfB() {
-        if (checkExistence(a, b / 2f, c))
-            this.b /= 2f;
-        else System.out.println("Error: value is not set");
-    }
-
-    /**
-     * Збільшує вдвічі сторону "с" трикутника
-     */
-    public void duplicateC() {
-        if (checkExistence(a, b, 2f * c))
-            this.c *= 2f;
-        else System.out.println("Error: value is not set");
-    }
-
-    /**
-     * Зменшує вдвічі сторону "с" трикутника
-     */
-    public void halfC() {
-        if (checkExistence(a, b, c / 2f))
-            this.c /= 2f;
-        else System.out.println("Error: value is not set");
+    public void halveSides() {
+        this.a /= 2;
+        this.b /= 2;
+        this.c /= 2;
     }
 
     /**
@@ -131,5 +89,17 @@ public class Triangle {
         return (float) Math.sqrt(s);
     }
 
+    public Memento saveState() {
+        return new Memento(a, b, c);
+    }
 
+    public void restoreState(Memento memento) {
+        this.a = memento.getA();
+        this.b = memento.getB();
+        this.c = memento.getC();
+    }
+
+    public String toString() {
+        return "Triangle with a: " + a + ", b: " + b + ", c: " + c;
+    }
 }

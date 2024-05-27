@@ -32,11 +32,23 @@ public class Client {
                     break;
             }
 
-            System.out.println("Volume = " + triangle.square());
+            System.out.println("Square = " + triangle.square());
         }
 
+        Caretaker caretaker = new Caretaker(triangle);
+
+        caretaker.save();
+        System.out.println("Initial triangle: " + triangle);
+        System.out.println("triangle area: " + triangle.square());
+
+        triangle.setA(3);
+        System.out.println("Updated triangle: " + triangle);
+        System.out.println("triangle area: " + triangle.square());
 
 
+        caretaker.restore();
+        System.out.println("Origin triangle: " + triangle);
+        System.out.println("triangle area: " + triangle.square());
     }
 
 }
