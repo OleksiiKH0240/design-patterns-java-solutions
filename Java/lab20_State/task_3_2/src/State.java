@@ -1,3 +1,7 @@
 public interface State {
-    // TODO:
+    void play();
+    void pause();
+    void next();
+    void prev();
+    void stop();
 }

@@ -41,23 +41,35 @@ public class MediaPlayer {
     }
 
     public void play() {
-
+        if (state == null) {
+            state = new PlayingState(this);
+        }
+        state.play();
     }
 
     public void pause() {
-
+        if (state != null) {
+            state.pause();
+        }
     }
 
     public void next() {
-
+        if (state != null) {
+            state.next();
+        }
     }
 
     public void prev() {
-
+        if (state != null) {
+            state.prev();
+        }
     }
 
     public void stop() {
-
+        if (state != null) {
+            state.stop();
+            state = null;
+        }
     }
 
 }
