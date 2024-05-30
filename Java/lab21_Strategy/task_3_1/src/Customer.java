@@ -1,12 +1,17 @@
 public class Customer {
 
-  public void makeBankAccountPayment(int amount) {
-    System.out.println("Payment of $" + amount + " made from bank account.");
+  private PaymentStrategy paymentStrategy;
+
+  public void setPaymentStrategy(PaymentStrategy paymentStrategy) {
+    this.paymentStrategy = paymentStrategy;
   }
 
-  public void makePayPalPayment(int amount) {
-    System.out.println("Payment of $" + amount + " made from PayPal.");
+  public void makePayment(int amount) {
+    if (paymentStrategy != null) {
+      paymentStrategy.makePayment(amount);
+    } else {
+      System.out.println("Please set payment strategy first.");
+    }
   }
-
 
 }
