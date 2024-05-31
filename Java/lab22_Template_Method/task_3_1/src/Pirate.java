@@ -1,7 +1,7 @@
 /**
  * Пірат
  */
-public class Pirate {
+public class Pirate extends CharacterTemplate{
 
   /**
    * Підняти зброю для захисту - оголити меч
@@ -22,16 +22,6 @@ public class Pirate {
    */
   public void moveToSafety() {
     System.out.println("Return to the ship");
-  }
-
-  /**
-   * Стратегія захисту та відступу
-   */
-  public void defendAgainstAttack() {
-    pickUpWeapon();
-    defenseAction();
-    moveToSafety();
-    System.out.println();
   }
 
 }

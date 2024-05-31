@@ -1,7 +1,7 @@
 /**
  * Троль
  */
-public class Troll {
+public class Troll extends CharacterTemplate {
 
   /**
    * Підняти булаву
@@ -22,16 +22,6 @@ public class Troll {
    */
   public void moveToSafety() {
     System.out.println("Return to the mountain");
-  }
-
-  /**
-   * Стратегія захисту та відступу
-   */
-  public void defendAgainstAttack() {
-    pickUpWeapon();
-    defenseAction();
-    moveToSafety();
-    System.out.println();
   }
 
 }
