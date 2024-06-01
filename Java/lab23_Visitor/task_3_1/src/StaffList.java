@@ -1,23 +1,30 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class StaffList implements Employee {
+    private List<Employee> employees = new ArrayList<>();
 
-    private final ArrayList<Employee> salaries = new ArrayList<Employee>();
-
-    public StaffList() {
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
     }
 
-    public void addEmployee(Employee employee){
-        salaries.add(employee);
+    public void removeEmployee(Employee employee) {
+        employees.remove(employee);
     }
 
     @Override
     public int getSalary() {
-        int sum = 0;
-        for (Employee salary : salaries) {
-            sum += salary.getSalary();
+        int totalSalary = 0;
+        for (Employee employee : employees) {
+            totalSalary += employee.getSalary();
         }
-        return sum;
+        return totalSalary;
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        for (Employee employee : employees) {
+            employee.accept(visitor);
+        }
+    }
 }

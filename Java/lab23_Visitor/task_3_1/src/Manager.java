@@ -1,12 +1,7 @@
 public class Manager implements Employee {
-
     private int salary;
 
     public Manager(int salary) {
-        this.salary = salary;
-    }
-
-    public void setSalary(int salary) {
         this.salary = salary;
     }
 
@@ -15,4 +10,12 @@ public class Manager implements Employee {
         return salary;
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
 }

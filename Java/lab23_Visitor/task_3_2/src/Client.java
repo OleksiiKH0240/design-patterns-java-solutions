@@ -4,13 +4,17 @@ import java.util.List;
 public class Client {
 
     public static void main(String[] args) {
-        final List<MilitaryObject> militaryObjects = new ArrayList<>();
-        militaryObjects.add(new GeneralStaff(20, 100));
-        militaryObjects.add(new MilitaryBase(10, 1000, 300, 20));
+        Spy secretAgent = new SecretAgent();
+        Spy saboteur = new Saboteur();
 
-        for (MilitaryObject military : militaryObjects) {
-            System.out.println(military);
-        }
+        MilitaryObject generalStaff = new GeneralStaff();
+        MilitaryObject militaryBase = new MilitaryBase();
+
+        generalStaff.accept(secretAgent);
+        generalStaff.accept(saboteur);
+
+        militaryBase.accept(secretAgent);
+        militaryBase.accept(saboteur);
     }
 
 }

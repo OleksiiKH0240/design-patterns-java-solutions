@@ -1,7 +1,7 @@
-public class SalesPerson implements Employee {
+public class ITSupport implements Employee {
     private int salary;
 
-    public SalesPerson(int salary) {
+    public ITSupport(int salary) {
         this.salary = salary;
     }
 
